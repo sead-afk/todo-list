@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import Todo from './Todo';
+import {Button, FormControl, Input, InputLabel} from '@mui/material';
 import './App.css';
 
 function App() {
@@ -11,20 +13,27 @@ function App() {
 Event.preventDefault(); // Stops the refresh
 console.log('drugi emoji', 'I am working !!!')
 setTodos([...todos, input]);
-setInput(); //clearing input after submitting (clicking todo button)
+setInput(''); //clearing input after submitting (clicking todo button)
 }
   
 return (
     <div className="App">
-      <h1>Hello Clever Programmers </h1>
+      <h1>Hello bois </h1>
       <form>
-       <input value={input} onChange={Event => setInput(Event.target.value) }/>
-       <button type="submit" onClick={addTodo}>Add Todo</button>
+       <FormControl>
+        <InputLabel>Write a Todo</InputLabel>
+        <Input value={input} onChange={event => setInput(event.target.value)} />
+        </FormControl>
+
+       <Button disabled={!input} type="submit" onClick={addTodo} variant="contained" color="primary">
+          Add Todo
+        </Button>
+       {/*<button type="submit" onClick={addTodo}>Add Todo</button>*/}
       </form>
       
       <ul>
         {todos.map(todo => (
-         <li>{todo}</li> 
+         <Todo text={todo}/>
         ))}
         </ul>
     </div>
