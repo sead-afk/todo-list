@@ -1,18 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Todo from './Todo';
 import {Button, FormControl, Input, InputLabel} from '@mui/material';
 import './App.css';
+import db from './firebase';
+import firebase from 'firebase';
 
 function App() {
-  const [todos, setTodos] = useState(['Take dogs for a walk', 'Take the rubbish out']) ;
+  const [todos, setTodos] = useState([]) ;
   const [input, setInput] = useState('');
-  console.log('emoji', input);
+  
+  //When app loads we wait for database and fetch new todos as they get added or removed
+
+  useEffect( () => {
+// this code fires when app.js loads
+db.collection('todos').onSnapshot(snapshot => {
+  setTodos(snapshot.docs.map(doc => doc.data().todo))
+
+})
+
+
+  }, []);
  
    const addTodo = (Event) => {
 // this will fire off when we click the button
 Event.preventDefault(); // Stops the refresh
-console.log('drugi emoji', 'I am working !!!')
-setTodos([...todos, input]);
+
+db.collection('todos').add({
+  todo: input,
+  timestamp: firebase.firestore.FieldValue.serverTimestamp()
+})
+
 setInput(''); //clearing input after submitting (clicking todo button)
 }
   

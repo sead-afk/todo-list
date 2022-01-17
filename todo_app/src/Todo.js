@@ -1,14 +1,15 @@
+import './Todo.css';
 import { List,ListItem, ListItemText, ListItemAvatar, Avatar, ImageIcon } from '@mui/material'
 import React from 'react'
 
 function Todo(props) {
     return (
-        <List>
+        <List className='todo__list'>
             <ListItem>
                 <ListItemAvatar>
                     
                 </ListItemAvatar>
-                <ListItemText primary="Todo..." secondary={props.text}/>
+                <ListItemText primary={props.text} secondary=" Deadline : "/>
             </ListItem>
         </List>
     )
