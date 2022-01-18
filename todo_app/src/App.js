@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import db from './firebase';
+import firebase from "firebase";
 import Todo from './Todo';
 import {Button, FormControl, Input, InputLabel} from '@mui/material';
 import './App.css';
-import db from './firebase';
-import firebase from 'firebase';
+
+
 
 function App() {
   const [todos, setTodos] = useState([]) ;
@@ -13,12 +15,13 @@ function App() {
 
   useEffect( () => {
 // this code fires when app.js loads
-db.collection('todos').onSnapshot(snapshot => {
-  setTodos(snapshot.docs.map(doc => doc.data().todo))
+    db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+      setTodos(snapshot.docs.map(doc => ({
+        id: doc.id, 
+        todo: doc.data().todo
+      })))
 
-})
-
-
+    })
   }, []);
  
    const addTodo = (Event) => {
@@ -50,7 +53,7 @@ return (
       
       <ul>
         {todos.map(todo => (
-         <Todo text={todo}/>
+         <Todo todo={todo}/>
         ))}
         </ul>
     </div>
