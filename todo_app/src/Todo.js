@@ -14,10 +14,10 @@ const useStyles = makeStyles ( (theme) => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
+    backgroundColor: '#f7eceb',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    padding: 4,
     },
   }));
 
@@ -52,7 +52,7 @@ function Todo(props) {
 
         <h1>I am a modal</h1>
         <input placeholder={props.todo.todo} value={input || ''} onChange={Event => setInput(Event.target.value)}/>
-        <Button onClick={ e => setOpen(false)}>Update Todo</Button>
+        <Button onClick={updateTodo}>Update Todo</Button>
 
         </div>
 
