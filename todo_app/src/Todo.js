@@ -51,7 +51,7 @@ function Todo(props) {
         <div className= {classes.paper}> 
 
         <h1>I am a modal</h1>
-        <input placeholder={props.todo.todo} value={input || ''} onChange={Event => setInput(Event.target.value)}/>
+        <input placeholder={props.todo.todo} value={input} onChange={Event => setInput(Event.target.value)}/>
         <Button onClick={updateTodo}>Update Todo</Button>
 
         </div>
@@ -64,7 +64,7 @@ function Todo(props) {
                 <ListItemAvatar>
                     
                 </ListItemAvatar>
-                <ListItemText primary={props.todo.todo} secondary=" Deadline : "/>
+                <ListItemText primary={props.todo.todo} secondary="a todo"/>
             </ListItem>
             <button onClick={ e => setOpen(true)}>Edit</button>
             <DeleteForeverIcon onClick={event => db.collection('todos').doc(props.todo.id).delete()}/>

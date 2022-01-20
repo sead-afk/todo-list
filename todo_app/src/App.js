@@ -38,7 +38,7 @@ setInput(''); //clearing input after submitting (clicking todo button)
   
 return (
     <div className="App">
-      <h1>Hello bois </h1>
+      <h1>Hello Professor </h1>
       <form>
        <FormControl>
         <InputLabel>Write a Todo</InputLabel>
