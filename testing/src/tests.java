@@ -40,7 +40,7 @@ class tests {
 		webDriver.get(baseUrl);
 		
 		WebElement title = webDriver.findElement(By.xpath("/html/body/div/div/h1"));
-		assertEquals("Todo list", title.getText());
+		assertEquals("Hello Professor", title.getText());
 		assertNotEquals("Hello bois", title.getText());
 		Thread.sleep(5000);
 	}
